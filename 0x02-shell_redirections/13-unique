@@ -1,2 +1,2 @@
 #!/bin/bash
-cat -t | unique -u
+sort | unique -u
