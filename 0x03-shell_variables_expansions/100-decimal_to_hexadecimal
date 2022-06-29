@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $((10#$DECIMAL))
+tr 'A-Ma-mN-Zn-z' 'N-Zn-zA-Ma-m'
