@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $((FF#$DECIMAL))
+echo 'obase=16; ibase=10; $DECIMAL' | bc
