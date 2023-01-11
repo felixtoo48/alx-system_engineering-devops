@@ -1,3 +1,5 @@
+# Using puppet, create a file with below specifications
+
 file { '/tmp/school':
   path    => '/tmp/school',
   content => 'I love Puppet',
