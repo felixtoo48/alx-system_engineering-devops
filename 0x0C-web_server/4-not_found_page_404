@@ -13,7 +13,7 @@ sudo service nginx start
 echo 'Hello World!' > /var/www/html/index.nginx-debian.html
 sudo sed -i "30i $ADD301_REDIRECT" /etc/nginx/sites-available/default #add at line 30
 
-echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
+echo "Ceci n'est pas une page" >> /var/www/html/custom_404.html
 sudo sed -i "s@$PATTERN@$ADD404_NOTFOUND@" /etc/nginx/sites-available/default #uncomment and replace
 
 sudo service nginx restart
