@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Configure server with: Nginx, custom 404, custom 301 redirect to google
+# Add to HTTP header
+
+
+ADD_HEADER="\\\tadd_header X-Served-By $HOSTNAME;"
+
+sudo apt-get update
+sudo apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+sudo service nginx start
+
+echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/ permanent;' /etc/nginx/sites-available/default #add at line 30
+
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
+sed -i "46i error_page 404 /custom_404.html;" /etc/nginx/sites-available/default
+
+# Header is updated (add_header to file)
+sudo sed -i "27i $ADD_HEADER" /etc/nginx/sites-available/default
+
+sudo service nginx restart
