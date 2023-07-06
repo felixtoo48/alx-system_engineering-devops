@@ -37,9 +37,9 @@ frontend my_frontend
         bind *:80
         bind *:443 ssl crt /etc/letsencrypt/live/nanodesign.tech/fullchain.pem
         mode http
-        default_backend my_backend_1
+        default_backend my_backend
 
-backend my_backend_1
+backend my_backend
         balance roundrobin
-        server 91503-web-01 52.91.152.144:80 check
-        server 91503-web-02 100.25.182.90:80 check
+        server 91503-web-01 34.239.255.247:80 check
+        server 91503-web-02 34.202.158.245:80 check
