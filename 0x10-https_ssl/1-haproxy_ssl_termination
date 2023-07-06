@@ -35,8 +35,7 @@ defaults
 
 frontend my_frontend
         bind *:80
-        bind *:443 ssl crt /etc/letsencrypt/live/nanodesign.tech/fullchain.pem
-        mode http
+        bind *:443 ssl crt /etc/letsencrypt/live/www.felipro.tech/fullchain.pem
         default_backend my_backend
 
 backend my_backend
