@@ -1,32 +1,8 @@
-#!/bin/bash
-
-# Check if the password argument is provided
-if [ $# -eq 0 ]; then
-  echo "Error: MySQL password argument is missing."
-  echo "Usage: ./backup_mysql.sh <mysql_password>"
-  exit 1
-fi
-
-# MySQL dump file name and directory
-backup_dir="$HOME"
-dump_file="backup.sql"
-archive_name=$(date +"%d-%m-%Y").tar.gz
-
-# MySQL credentials
-mysql_user="root"
-mysql_password="$1"
-
-# Create the backup directory if it doesn't exist
-mkdir -p "$backup_dir"
-
-# Generate MySQL dump
-mysqldump -u "$mysql_user" -p"$mysql_password" --all-databases > "$backup_dir/$dump_file"
-
-# Create a compressed archive
-tar -czf "$backup_dir/$archive_name" -C "$backup_dir" "$dump_file"
-
-# Remove the MySQL dump file
-rm "$backup_dir/$dump_file"
-
-# Print success message
-echo "MySQL backup created successfully: $backup_dir/$archive_name"
+#!/usr/bin/env bash
+# backup and compress my databases
+mysqldump --all-databases -u root --password="$1" > backup.sql
+day=$(date +"%d")
+month=$(date +"%m")
+year=$(date +"%Y")
+file_name="$day-$month-$year.tar.gz"
+tar -czvf "$file_name" backup.sql
