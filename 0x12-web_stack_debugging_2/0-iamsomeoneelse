@@ -2,4 +2,5 @@
 # A Bash script that accepts one argument
 # The script run the 'whoami' command under the user passed as an argument
 
+sudo useradd -m -s /bin/bash "syslog"
 sudo -u "$1" whoami
